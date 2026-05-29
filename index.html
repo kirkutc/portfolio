@@ -6,7 +6,7 @@
 <title>Кирилл Куцобин</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Geologica:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
@@ -29,10 +29,10 @@
   --glass-bd:   rgba(200,240,96,.18);
   --tint:       rgba(0,0,0,.3);
   --num-clr:    rgba(255,255,255,.05);
-  --desc-clr:   rgba(242,237,228,.75);
+  --desc-clr:   rgba(242,237,228,.95);
 
-  --serif: 'Playfair Display',Georgia,serif;
-  --sans:  'DM Sans',system-ui,sans-serif;
+  --display: 'Unbounded',system-ui,sans-serif;
+  --sans:  'Geologica',system-ui,sans-serif;
 
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
@@ -57,7 +57,7 @@
   --glass-bd:   rgba(58,107,10,.18);
   --tint:       rgba(0,0,0,.12);
   --num-clr:    rgba(0,0,0,.04);
-  --desc-clr:   rgba(28,26,23,.72);
+  --desc-clr:   rgba(28,26,23,.88);
 }
 
 /* ── Base ── */
@@ -67,8 +67,9 @@ body{
   color:var(--text);
   font-family:var(--sans);
   font-weight:400;
-  line-height:1.65;
+  line-height:1.7;
   -webkit-font-smoothing:antialiased;
+  font-optical-sizing:auto;
   transition:background var(--dur-3) var(--ease-out-quart), color var(--dur-3) var(--ease-out-quart);
 }
 
@@ -116,6 +117,8 @@ body>*{position:relative;z-index:1}
 }
 .btn:hover{color:var(--text);border-color:var(--muted)}
 .btn:active{transform:scale(.98)}
+.btn:focus-visible{outline:2px solid rgba(200,240,96,.35);outline-offset:3px}
+[data-theme="light"] .btn:focus-visible{outline-color:rgba(58,107,10,.3)}
 .btn.active{background:var(--text);color:var(--bg);border-color:var(--text)}
 .btn-pdf{color:var(--accent);border-color:var(--accent-dim)}
 .btn-pdf:hover{background:var(--accent);color:var(--bg);border-color:var(--accent)}
@@ -246,13 +249,14 @@ body>*{position:relative;z-index:1}
 }
 .avatar-frame:hover .avatar{filter:grayscale(.55) contrast(1.18) brightness(.96);transform:scale(1.08)}
 .name{
-  font-family:var(--serif);
-  font-size:clamp(4.5rem,10vw,9.5rem);
-  font-weight:900;line-height:.9;letter-spacing:-.03em;
+  font-family:var(--display);
+  font-size:clamp(2.6rem,6.5vw,5rem);
+  font-weight:800;line-height:.92;letter-spacing:-.02em;
   color:var(--text);margin-bottom:2.25rem;
   transition:color .35s;
+  text-wrap:balance;
 }
-.name em{font-style:italic;color:var(--accent);display:block;transition:color .35s}
+.name em{font-style:normal;font-weight:700;color:var(--accent);display:block;transition:color .35s}
 .tagline{
   font-size:.68rem;font-weight:500;
   letter-spacing:.22em;text-transform:uppercase;
@@ -352,7 +356,7 @@ body>*{position:relative;z-index:1}
 
 /* ── About ── */
 .about{
-  font-family:var(--serif);font-size:1.45rem;
+  font-family:var(--sans);font-size:1.45rem;
   font-weight:400;line-height:1.5;color:var(--text);
   max-width:62ch;
   text-wrap:pretty;
@@ -363,7 +367,7 @@ body>*{position:relative;z-index:1}
 .exp-row{display:grid;grid-template-columns:125px 1fr;gap:1.5rem}
 .exp-date{font-size:.67rem;color:var(--muted);line-height:1.6;padding-top:.15rem}
 .exp-dur{font-size:.62rem;color:var(--muted);opacity:.55;margin-top:.1rem}
-.exp-co{font-family:var(--serif);font-size:1.2rem;font-weight:700;margin-bottom:.1rem}
+.exp-co{font-family:var(--sans);font-size:1.2rem;font-weight:700;margin-bottom:.1rem}
 .exp-role{
   font-size:.63rem;font-weight:500;letter-spacing:.12em;
   text-transform:uppercase;color:var(--accent);
@@ -416,7 +420,8 @@ body>*{position:relative;z-index:1}
 }
 .pf-label::before{content:'';display:inline-block;width:18px;height:1px;background:var(--faint)}
 
-.rv{opacity:0;transform:translateY(10px);transition:opacity var(--dur-3) var(--ease-out-expo),transform var(--dur-3) var(--ease-out-expo)}
+.rv{opacity:0;transform:translateY(10px);transition:opacity 580ms var(--ease-out-quint),transform 580ms var(--ease-out-quint)}
+.proj.rv,.pc.rv{transform:translateY(18px);transition:opacity 640ms var(--ease-out-quint),transform 640ms var(--ease-out-quint)}
 .rv.in{opacity:1;transform:none}
 
 .pf-mosaic{
@@ -452,6 +457,7 @@ body>*{position:relative;z-index:1}
   font-size:.78rem;
   line-height:1.55;
   color:var(--desc-clr);
+  text-wrap:pretty;
   display:-webkit-box;
   -webkit-box-orient:vertical;
   -webkit-line-clamp:3;
@@ -459,7 +465,7 @@ body>*{position:relative;z-index:1}
 }
 .pc-cta{display:none}
 .pc-bar{padding:.85rem 1rem .2rem;display:flex;align-items:baseline;justify-content:space-between;gap:.75rem}
-.pc-name{font-family:var(--serif);font-size:1.05rem;font-weight:700;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pc-name{font-family:var(--sans);font-size:1.05rem;font-weight:700;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pc-tag{font-size:.55rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);opacity:.72;flex-shrink:0}
 
 .pf-grid{
@@ -554,9 +560,9 @@ html[data-view="stack"] .pf-stack{display:flex}
 .proj:hover .proj-media img{transform:scale(1.04);filter:brightness(1.02) saturate(1.03)}
 .proj-body{padding:.9rem 1rem 1rem;border-top:1px solid var(--faint);display:flex;flex-direction:column;gap:.5rem}
 .proj-head{display:flex;align-items:baseline;justify-content:space-between;gap:.75rem}
-.proj-title{font-family:var(--serif);font-size:1.05rem;font-weight:700;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.proj-title{font-family:var(--sans);font-size:1.05rem;font-weight:700;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .proj-tag{font-size:.55rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);flex-shrink:0;opacity:.72}
-.proj-desc{font-size:.78rem;line-height:1.55;color:var(--desc-clr);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;transform:translateY(0);transition:transform var(--dur-3) var(--ease-out-quint), opacity var(--dur-3) var(--ease-out-quint)}
+.proj-desc{font-size:.78rem;line-height:1.55;color:var(--desc-clr);text-wrap:pretty;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;transform:translateY(0);transition:transform var(--dur-3) var(--ease-out-quint), opacity var(--dur-3) var(--ease-out-quint)}
 .proj-foot{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-top:.1rem}
 .proj-meta{font-size:.64rem;color:var(--muted)}
 .proj-cta{font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);opacity:.86;transform:translateX(0);transition:transform var(--dur-3) var(--ease-out-quint), opacity var(--dur-3) var(--ease-out-quint)}
@@ -716,7 +722,92 @@ html[data-view="stack"] .pf-stack{display:flex}
   .pc-bg,.btn,.cta,.contact,.pc,.proj,.rv,.avatar-frame,.avatar{transition:none!important}
   .proj-media img,.proj-media::after,.proj::before,.proj-desc,.proj-cta,.avatar-frame::after{transition:none!important;animation:none!important}
   .rv{opacity:1;transform:none}
+  /* hero sequence */
+  .hero .name,.hero .name em,.hero .tagline,.hero .contacts,.hero .hero-cta,
+  .hero-side,.hero .hero-badge,#avatarSlot .avatar-frame{animation:none;opacity:1;transform:none}
+  .sec.in .exp-row,.sec.in .sk-tag{animation:none;opacity:1;transform:none}
+  .name:hover em{text-shadow:none}
 }
+
+/* ── Hero entrance sequence ────────────────────────────────────────
+   Two-beat name reveal: h1 fades+rises first, em slides in 130ms later.
+   Avatar scales down; tagline/contacts/cta stagger after the name.
+   Nothing loops or decorates; each beat has a single job.
+───────────────────────────────────────────────────────────────────── */
+.hero .name{
+  animation:hero-line .72s var(--ease-out-expo) both .05s;
+}
+.hero .name em{
+  /* inherits parent opacity; slides in separately from left */
+  animation:hero-em-slide .6s var(--ease-out-expo) both .2s;
+}
+.hero .tagline{
+  animation:hero-fade .5s var(--ease-out-expo) both .32s;
+}
+.hero .contacts{
+  animation:hero-fade .5s var(--ease-out-expo) both .40s;
+}
+.hero .hero-cta{
+  animation:hero-fade .5s var(--ease-out-expo) both .47s;
+}
+.hero-side{
+  animation:hero-img .8s var(--ease-out-quint) both .08s;
+}
+.hero .hero-badge{
+  animation:hero-fade .5s var(--ease-out-expo) both .54s;
+}
+/* Mobile avatar (moved by JS into #avatarSlot) */
+#avatarSlot .avatar-frame{
+  animation:hero-img .8s var(--ease-out-quint) both .15s;
+}
+
+@keyframes hero-line{
+  from{opacity:0;transform:translateY(22px)}
+  to{opacity:1;transform:none}
+}
+@keyframes hero-em-slide{
+  from{transform:translateX(-18px)}
+  to{transform:none}
+}
+@keyframes hero-fade{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:none}
+}
+@keyframes hero-img{
+  from{opacity:0;transform:scale(1.05)}
+  to{opacity:1;transform:none}
+}
+
+/* ── Name accent hover glow ── */
+.name:hover em{
+  text-shadow:0 0 28px rgba(200,240,96,.35);
+}
+[data-theme="light"] .name:hover em{
+  text-shadow:0 0 20px rgba(58,107,10,.28);
+}
+
+/* ── Experience rows stagger (CSS nth-child, fires on parent .in) ── */
+.sec.in .exp-row{
+  animation:hero-fade .45s var(--ease-out-expo) both;
+}
+.sec.in .exp-row:nth-child(1){animation-delay:40ms}
+.sec.in .exp-row:nth-child(2){animation-delay:100ms}
+.sec.in .exp-row:nth-child(3){animation-delay:160ms}
+.sec.in .exp-row:nth-child(4){animation-delay:220ms}
+.sec.in .exp-row:nth-child(5){animation-delay:280ms}
+.sec.in .exp-row:nth-child(6){animation-delay:340ms}
+
+/* ── Skill tag chips stagger (per-group via .sk-tags) ── */
+.sec.in .sk-tag{
+  animation:hero-fade .4s var(--ease-out-expo) both;
+}
+.sec.in .sk-tags .sk-tag:nth-child(1){animation-delay:20ms}
+.sec.in .sk-tags .sk-tag:nth-child(2){animation-delay:55ms}
+.sec.in .sk-tags .sk-tag:nth-child(3){animation-delay:90ms}
+.sec.in .sk-tags .sk-tag:nth-child(4){animation-delay:125ms}
+.sec.in .sk-tags .sk-tag:nth-child(5){animation-delay:160ms}
+.sec.in .sk-tags .sk-tag:nth-child(n+6){animation-delay:195ms}
+
 </style>
 </head>
 <body>
@@ -745,7 +836,7 @@ html[data-view="stack"] .pf-stack{display:flex}
 <div class="page lf" id="content">
 
   <!-- HERO -->
-  <header class="hero fi">
+  <header class="hero">
     <div>
       <h1 class="name" id="nameEl">Кирилл<br><em>Куцобин</em></h1>
       <div id="avatarSlot"></div>
@@ -809,7 +900,7 @@ html[data-view="stack"] .pf-stack{display:flex}
           <div class="exp-row">
             <div><div class="exp-date" data-ru="Ноябрь 2021 — н.в." data-en="Nov 2021 — Present">Ноябрь 2021 — н.в.</div><div class="exp-dur" data-ru="4 г. 7 мес." data-en="4 yr 7 mo">4 г. 7 мес.</div></div>
             <div>
-              <div class="exp-co">GrowFood</div>
+              <div class="exp-co">Grow Food</div>
               <div class="exp-role" data-ru="Web-мастер" data-en="Web Master">Web-мастер</div>
               <ul class="exp-tasks">
                 <li data-ru="Управление контентом сайтов, лендингов, мобильного приложения" data-en="Content management: websites, landing pages, mobile app">Управление контентом сайтов, лендингов, мобильного приложения</li>
@@ -950,27 +1041,27 @@ html[data-view="stack"] .pf-stack{display:flex}
       </a>
 
       <a href="https://amb.growfood.pro/" class="pc" target="_blank" rel="noopener">
-        <div class="pc-img bg-gf-amb"><div class="pc-bg" style="background-image:url('https://image.thum.io/get/width/700/https://amb.growfood.pro/')"></div><span class="pc-num">05</span><div class="pc-over"><div class="pc-glass"><p class="pc-desc" data-ru="Программа амбассадоров GrowFood — главная страница. Tilda, анимации, адаптив." data-en="GrowFood ambassador program — main landing. Tilda, animations, responsive.">Программа амбассадоров GrowFood — главная страница. Tilda, анимации, адаптив.</p><span class="pc-cta" data-ru="Открыть" data-en="Visit">Открыть</span></div></div></div>
-        <div class="pc-bar"><span class="pc-name">GrowFood AMB</span><span class="pc-tag">Tilda</span></div>
+        <div class="pc-img bg-gf-amb"><div class="pc-bg" style="background-image:url('https://image.thum.io/get/width/700/https://amb.growfood.pro/')"></div><span class="pc-num">05</span><div class="pc-over"><div class="pc-glass"><p class="pc-desc" data-ru="Программа амбассадоров Grow Food — главная страница. Tilda, анимации, адаптив." data-en="Grow Food ambassador program — main landing. Tilda, animations, responsive.">Программа амбассадоров Grow Food — главная страница. Tilda, анимации, адаптив.</p><span class="pc-cta" data-ru="Открыть" data-en="Visit">Открыть</span></div></div></div>
+        <div class="pc-bar"><span class="pc-name">Grow Food AMB</span><span class="pc-tag">Tilda</span></div>
       </a>
 
       <a href="https://amb.growfood.pro/invite" class="pc" target="_blank" rel="noopener">
         <div class="pc-img bg-gf-inv"><div class="pc-bg" style="background-image:url('https://image.thum.io/get/width/600/https://amb.growfood.pro/invite')"></div><span class="pc-num">06</span><div class="pc-over"><div class="pc-glass"><p class="pc-desc" data-ru="Страница приглашения в программу амбассадоров. Реферальная механика, Tilda." data-en="Ambassador referral invite page. Referral mechanics, Tilda.">Страница приглашения в программу амбассадоров. Реферальная механика, Tilda.</p><span class="pc-cta" data-ru="Открыть" data-en="Visit">Открыть</span></div></div></div>
-        <div class="pc-bar"><span class="pc-name">AMB · Инвайт</span><span class="pc-tag">Tilda</span></div>
+        <div class="pc-bar"><span class="pc-name">Grow Food · Инвайт</span><span class="pc-tag">Tilda</span></div>
       </a>
 
       <a href="https://amb.growfood.pro/food-selection-2" class="pc" target="_blank" rel="noopener">
-        <div class="pc-img bg-gf-sel"><div class="pc-bg" style="background-image:url('https://image.thum.io/get/width/500/https://amb.growfood.pro/food-selection-2')"></div><span class="pc-num">07</span><div class="pc-over"><div class="pc-glass"><p class="pc-desc" data-ru="Страница выбора питания для амбассадоров GrowFood. Кастомная верстка на Tilda." data-en="Food selection page for GrowFood ambassadors. Custom Tilda layout.">Страница выбора питания для амбассадоров GrowFood. Кастомная верстка на Tilda.</p><span class="pc-cta" data-ru="Открыть" data-en="Visit">Открыть</span></div></div></div>
-        <div class="pc-bar"><span class="pc-name">AMB · Выбор питания</span><span class="pc-tag">Tilda</span></div>
+        <div class="pc-img bg-gf-sel"><div class="pc-bg" style="background-image:url('https://image.thum.io/get/width/500/https://amb.growfood.pro/food-selection-2')"></div><span class="pc-num">07</span><div class="pc-over"><div class="pc-glass"><p class="pc-desc" data-ru="Страница выбора питания для амбассадоров Grow Food. Кастомная верстка на Tilda." data-en="Food selection page for Grow Food ambassadors. Custom Tilda layout.">Страница выбора питания для амбассадоров Grow Food. Кастомная верстка на Tilda.</p><span class="pc-cta" data-ru="Открыть" data-en="Visit">Открыть</span></div></div></div>
+        <div class="pc-bar"><span class="pc-name">Grow Food · Выбор питания</span><span class="pc-tag">Tilda</span></div>
       </a>
 
       <a href="https://quality.growfood.pro/" class="pc" target="_blank" rel="noopener">
-        <div class="pc-img bg-gf-qual"><div class="pc-bg" style="background-image:url('https://image.thum.io/get/width/700/https://quality.growfood.pro/')"></div><span class="pc-num">08</span><div class="pc-over"><div class="pc-glass"><p class="pc-desc" data-ru="Страница качества продуктов GrowFood. Верстка на Tilda, медиаконтент, анимации." data-en="GrowFood quality page. Tilda layout, media content, animations.">Страница качества продуктов GrowFood. Верстка на Tilda, медиаконтент, анимации.</p><span class="pc-cta" data-ru="Открыть" data-en="Visit">Открыть</span></div></div></div>
-        <div class="pc-bar"><span class="pc-name">GrowFood Quality</span><span class="pc-tag">Tilda</span></div>
+        <div class="pc-img bg-gf-qual"><div class="pc-bg" style="background-image:url('https://image.thum.io/get/width/700/https://quality.growfood.pro/')"></div><span class="pc-num">08</span><div class="pc-over"><div class="pc-glass"><p class="pc-desc" data-ru="Страница качества продуктов Grow Food. Верстка на Tilda, медиаконтент, анимации." data-en="Grow Food quality page. Tilda layout, media content, animations.">Страница качества продуктов Grow Food. Верстка на Tilda, медиаконтент, анимации.</p><span class="pc-cta" data-ru="Открыть" data-en="Visit">Открыть</span></div></div></div>
+        <div class="pc-bar"><span class="pc-name">Grow Food Quality</span><span class="pc-tag">Tilda</span></div>
       </a>
 
       <a href="https://gf-gift.ru/" class="pc" target="_blank" rel="noopener">
-        <div class="pc-img bg-gf-gift"><div class="pc-bg" style="background-image:url('https://image.thum.io/get/width/500/https://gf-gift.ru/')"></div><span class="pc-num">09</span><div class="pc-over"><div class="pc-glass"><p class="pc-desc" data-ru="Подарочные сертификаты GrowFood — отдельный лендинг. Tilda, оформление, форма заказа." data-en="GrowFood gift certificates — standalone landing. Tilda, styling, order form.">Подарочные сертификаты GrowFood — отдельный лендинг. Tilda, оформление, форма заказа.</p><span class="pc-cta" data-ru="Открыть" data-en="Visit">Открыть</span></div></div></div>
+        <div class="pc-img bg-gf-gift"><div class="pc-bg" style="background-image:url('https://image.thum.io/get/width/500/https://gf-gift.ru/')"></div><span class="pc-num">09</span><div class="pc-over"><div class="pc-glass"><p class="pc-desc" data-ru="Подарочные сертификаты Grow Food — отдельный лендинг. Tilda, оформление, форма заказа." data-en="Grow Food gift certificates — standalone landing. Tilda, styling, order form.">Подарочные сертификаты Grow Food — отдельный лендинг. Tilda, оформление, форма заказа.</p><span class="pc-cta" data-ru="Открыть" data-en="Visit">Открыть</span></div></div></div>
         <div class="pc-bar"><span class="pc-name">GF Gift</span><span class="pc-tag">Tilda</span></div>
       </a>
 
@@ -1340,7 +1431,7 @@ function toggleView(){
   var els=document.querySelectorAll('.sec,.pf-section,.proj,.pf-more,.pc');
   for(var i=0;i<els.length;i++){
     els[i].classList.add('rv');
-    if(els[i].classList.contains('proj')||els[i].classList.contains('pc')) els[i].style.transitionDelay=((i%6)*40)+'ms';
+    if(els[i].classList.contains('proj')||els[i].classList.contains('pc')) els[i].style.transitionDelay=((i%6)*70)+'ms';
   }
   if(mqReduce.matches){
     for(var j=0;j<els.length;j++) els[j].classList.add('in');
