@@ -694,57 +694,75 @@ h2,h3,.sec-title,.pf-label{font-family:var(--sans)}
 @media print{.intro{height:auto!important}.stage{position:static!important;height:auto!important;overflow:visible!important}.mosaic,.scroll-hint,.intro-bar{display:none!important}
   .mhero{position:static!important;width:auto!important;height:auto!important;border-radius:0!important;padding:1.5rem 0!important;background:none!important}.mhero .name{font-size:3.2rem!important}.mh-shape{display:none}}
 
-.controls,.intro-bar{transition:opacity .35s ease,transform .35s ease}
-body:not(.menu-on) .controls,body:not(.menu-on) .intro-bar{opacity:0;pointer-events:none;transform:translateY(-8px)}
+.controls,.intro-bar{transition:opacity .35s ease,transform .35s ease,visibility .35s}
+body:not(.menu-on) .controls,body:not(.menu-on) .intro-bar{opacity:0;pointer-events:none;visibility:hidden;transform:translateY(-8px)}
 @media print{body:not(.menu-on) .controls{display:none}}
+
+/* ═══ ACCESSIBILITY ═══ */
+.skip{position:absolute;left:1rem;top:-4rem;z-index:300;background:var(--pill);color:var(--pill-t);padding:.6rem 1.1rem;border-radius:999px;font-size:.9rem;font-weight:500;text-decoration:none;transition:top .15s}
+.skip:focus{top:1rem}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+main:focus{outline:none}
+/* min 12px for small captions; full opacity for readable contrast */
+.btn{font-size:.75rem}
+.scroll-hint,.exp-date,.exp-dur,.edu-yr,.edu-detail,.lang-lv,.wk-n,.wk-t span,.sk-name,.badge-text{font-size:.78rem}
+.contact{font-size:.85rem}
+.exp-dur{opacity:1}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0s!important}
+  .scroll-hint i{animation:none}
+}
 </style>
 </head>
 <body>
 
+<a class="skip" href="#main" data-ru="Перейти к содержимому" data-en="Skip to content">Перейти к содержимому</a>
+
 <!-- Controls -->
-<div class="controls">
-  <button class="btn active"  id="bRu" onclick="setLang('ru')">RU</button>
-  <button class="btn"         id="bEn" onclick="setLang('en')">EN</button>
-  <button class="btn btn-theme" id="bTheme" onclick="toggleTheme()" title="Toggle theme">🌙</button>
-  <button class="btn btn-pdf" onclick="window.print()">↓ PDF</button>
+<div class="controls" role="group" aria-label="Настройки">
+  <button class="btn active" id="bRu" type="button" lang="ru" aria-label="Русский" aria-pressed="true" onclick="setLang('ru')">RU</button>
+  <button class="btn"        id="bEn" type="button" lang="en" aria-label="English" aria-pressed="false" onclick="setLang('en')">EN</button>
+  <button class="btn btn-theme" id="bTheme" type="button" aria-label="Тёмная тема" onclick="toggleTheme()">🌙</button>
+  <button class="btn btn-pdf" id="bPdf" type="button" aria-label="Сохранить как PDF" onclick="window.print()">↓ PDF</button>
 </div>
 
-<section class="intro" aria-label="Intro">
+<section class="intro">
   <div class="stage">
-    <div class="intro-bar">KK</div>
-    <div class="mosaic"><div class="mcol" data-i="0"><div class="mcard im-zoomer"></div><div class="mcard im-promokod"></div><div class="mcard im-gift"></div><div class="mcard im-concierge"></div><div class="mcard im-invite"></div></div><div class="mcol" data-i="1"><div class="mcard im-maldives"></div><div class="mcard im-invite"></div><div class="mcard im-antarctica"></div><div class="mcard im-promokod"></div><div class="mcard im-tmstone"></div></div><div class="mcol" data-i="2"><div class="mcard im-cbt"></div><div class="mcard im-tmstone"></div><div class="mcard im-quality"></div><div class="mcard im-zoomer"></div><div class="mcard im-concierge"></div></div><div class="mcol" data-i="3"><div class="mcard im-invite"></div><div class="mcard im-concierge"></div><div class="mcard mspacer"></div><div class="mcard im-adventura"></div><div class="mcard im-gift"></div></div><div class="mcol" data-i="4"><div class="mcard im-adventura"></div><div class="mcard im-cbt"></div><div class="mcard im-gift"></div><div class="mcard im-maldives"></div><div class="mcard im-tmstone"></div></div><div class="mcol" data-i="5"><div class="mcard im-amb"></div><div class="mcard im-zoomer"></div><div class="mcard im-promokod"></div><div class="mcard im-quality"></div><div class="mcard im-adventura"></div></div><div class="mcol" data-i="6"><div class="mcard im-promokod"></div><div class="mcard im-concierge"></div><div class="mcard im-adventura"></div><div class="mcard im-tmstone"></div><div class="mcard im-gift"></div></div></div>
+    <div class="intro-bar" aria-hidden="true">KK</div>
+    <div class="mosaic" aria-hidden="true"><div class="mcol" data-i="0"><div class="mcard im-zoomer"></div><div class="mcard im-promokod"></div><div class="mcard im-gift"></div><div class="mcard im-concierge"></div><div class="mcard im-invite"></div></div><div class="mcol" data-i="1"><div class="mcard im-maldives"></div><div class="mcard im-invite"></div><div class="mcard im-antarctica"></div><div class="mcard im-promokod"></div><div class="mcard im-tmstone"></div></div><div class="mcol" data-i="2"><div class="mcard im-cbt"></div><div class="mcard im-tmstone"></div><div class="mcard im-quality"></div><div class="mcard im-zoomer"></div><div class="mcard im-concierge"></div></div><div class="mcol" data-i="3"><div class="mcard im-invite"></div><div class="mcard im-concierge"></div><div class="mcard mspacer"></div><div class="mcard im-adventura"></div><div class="mcard im-gift"></div></div><div class="mcol" data-i="4"><div class="mcard im-adventura"></div><div class="mcard im-cbt"></div><div class="mcard im-gift"></div><div class="mcard im-maldives"></div><div class="mcard im-tmstone"></div></div><div class="mcol" data-i="5"><div class="mcard im-amb"></div><div class="mcard im-zoomer"></div><div class="mcard im-promokod"></div><div class="mcard im-quality"></div><div class="mcard im-adventura"></div></div><div class="mcol" data-i="6"><div class="mcard im-promokod"></div><div class="mcard im-concierge"></div><div class="mcard im-adventura"></div><div class="mcard im-tmstone"></div><div class="mcard im-gift"></div></div></div>
     <div class="mhero"><h1 class="name" id="nameEl">Кирилл<br><em>Куцобин</em></h1><div class="mh-shape" id="lot" aria-hidden="true"><svg viewBox="-200 -200 400 400" class="mh-fb"><circle r="150" fill="#111"/></svg></div><p class="tagline"
          data-ru="Web-мастер · Верстальщик · Front-end разработчик"
          data-en="Web Master · Front-end Developer · Digital Craftsman">
         Web-мастер · Верстальщик · Front-end разработчик
       </p></div>
     <div class="veil"></div>
-    <div class="scroll-hint">scroll<i></i></div>
+    <div class="scroll-hint" aria-hidden="true">scroll<i></i></div>
   </div>
 </section>
 
-<div class="page lf">
+<main class="page lf" id="main" tabindex="-1">
 
   <!-- HERO -->
   <header class="hero fi">
     <div>
       <nav class="contacts">
         <a href="mailto:kirkutc@gmail.com" class="contact">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
           kirkutc@gmail.com
         </a>
-        <a href="https://t.me/kirkoots" class="contact" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.89 8.22-1.97 9.28c-.15.66-.54.82-1.08.51l-3-2.21-1.45 1.39c-.16.16-.3.3-.61.3l.21-3.05 5.56-5.02c.24-.21-.05-.33-.37-.12L6.18 13.6l-2.96-.92c-.64-.2-.66-.64.14-.95l11.57-4.46c.54-.2 1.01.13.96.95z"/></svg>
+        <a href="https://t.me/kirkoots" class="contact" target="_blank" rel="noopener" aria-label="Telegram @kirkoots">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.89 8.22-1.97 9.28c-.15.66-.54.82-1.08.51l-3-2.21-1.45 1.39c-.16.16-.3.3-.61.3l.21-3.05 5.56-5.02c.24-.21-.05-.33-.37-.12L6.18 13.6l-2.96-.92c-.64-.2-.66-.64.14-.95l11.57-4.46c.54-.2 1.01.13.96.95z"/></svg>
           @kirkoots
         </a>
         <span class="contact">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
           <span data-ru="Дубна · удалённо" data-en="Dubna · remote">Дубна · удалённо</span>
         </span>
       </nav>
     </div>
     <div class="hero-badge">
-      <div class="badge-dot"></div>
+      <div class="badge-dot" aria-hidden="true"></div>
       <span class="badge-text" data-ru="Открыт к предложениям" data-en="Open to opportunities">Открыт к предложениям</span>
     </div>
   </header>
@@ -755,7 +773,7 @@ body:not(.menu-on) .controls,body:not(.menu-on) .intro-bar{opacity:0;pointer-eve
     <div class="main-col">
 
       <section class="sec fi">
-        <p class="sec-label" data-ru="О себе" data-en="About">О себе</p>
+        <h2 class="sec-label" data-ru="О себе" data-en="About">О себе</h2>
         <p class="about"
            data-ru="Web-мастер с 6+ летним опытом: верстка на WordPress и Tilda, настройка аналитики и CRM, автоматизация воронок и чат-ботов, e-mail рассылки, контент-менеджмент. От ТЗ до деплоя."
            data-en="Web master with 6+ years: WordPress & Tilda development, CRM & analytics, chatbot automation, email campaigns, content management. From brief to deployment.">
@@ -764,7 +782,7 @@ body:not(.menu-on) .controls,body:not(.menu-on) .intro-bar{opacity:0;pointer-eve
       </section>
 
       <section class="sec fi">
-        <p class="sec-label" data-ru="Опыт работы" data-en="Experience">Опыт работы</p>
+        <h2 class="sec-label" data-ru="Опыт работы" data-en="Experience">Опыт работы</h2>
         <div class="exp-list">
 
           <div class="exp-row">
@@ -865,7 +883,7 @@ body:not(.menu-on) .controls,body:not(.menu-on) .intro-bar{opacity:0;pointer-eve
     <div class="side-col">
 
       <section class="sec fi">
-        <p class="sec-label" data-ru="Стек" data-en="Stack">Стек</p>
+        <h2 class="sec-label" data-ru="Стек" data-en="Stack">Стек</h2>
         <div class="sk-grid"><div class="sk-group"><p class="sk-name" data-ru="Верстка" data-en="Front-end">Верстка</p><div class="sk-tags"><span class="sk-tag">HTML5</span><span class="sk-tag">CSS3</span><span class="sk-tag">JS</span><span class="sk-tag" data-ru="Адаптив" data-en="Responsive">Адаптив</span></div></div>
         <div class="sk-group"><p class="sk-name" data-ru="Платформы" data-en="Platforms">Платформы</p><div class="sk-tags"><span class="sk-tag">Tilda</span><span class="sk-tag">WordPress</span><span class="sk-tag">GetCourse</span><span class="sk-tag">Bitrix24</span></div></div>
         <div class="sk-group"><p class="sk-name" data-ru="Аналитика" data-en="Analytics">Аналитика</p><div class="sk-tags"><span class="sk-tag">Я.Метрика</span><span class="sk-tag">G.Analytics</span><span class="sk-tag">SEO</span></div></div>
@@ -875,7 +893,7 @@ body:not(.menu-on) .controls,body:not(.menu-on) .intro-bar{opacity:0;pointer-eve
       </section>
 
       <section class="sec fi">
-        <p class="sec-label" data-ru="Образование" data-en="Education">Образование</p>
+        <h2 class="sec-label" data-ru="Образование" data-en="Education">Образование</h2>
         <div class="edu-list">
           <div><p class="edu-yr">2019</p><p class="edu-name" data-ru="МФПУ «Синергия»" data-en="MFPU «Synergy»">МФПУ «Синергия»</p><p class="edu-detail" data-ru="Менеджмент" data-en="Management">Менеджмент</p></div>
           <div><p class="edu-yr">2023</p><p class="edu-name" data-ru="Курс UI/UX" data-en="UI/UX Course">Курс UI/UX</p><p class="edu-detail" data-ru="Бюро Горбунова" data-en="Bureau Gorbunov">Бюро Горбунова</p></div>
@@ -885,7 +903,7 @@ body:not(.menu-on) .controls,body:not(.menu-on) .intro-bar{opacity:0;pointer-eve
       </section>
 
       <section class="sec fi">
-        <p class="sec-label" data-ru="Языки" data-en="Languages">Языки</p>
+        <h2 class="sec-label" data-ru="Языки" data-en="Languages">Языки</h2>
         <div class="lang-list">
           <div class="lang-row"><span data-ru="Русский" data-en="Russian">Русский</span><span class="lang-lv" data-ru="Родной" data-en="Native">Родной</span></div>
           <div class="lang-row"><span data-ru="Английский" data-en="English">Английский</span><span class="lang-lv">B1</span></div>
@@ -895,7 +913,7 @@ body:not(.menu-on) .controls,body:not(.menu-on) .intro-bar{opacity:0;pointer-eve
     </div><!-- /side-col -->
   </div><!-- /layout -->
 
-</div><!-- /page -->
+</main><!-- /page -->
 
 <script>
 // ── THEME ─────────────────────────────────────────
@@ -903,9 +921,11 @@ var DARK='dark', LIGHT='light';
 var html=document.documentElement;
 var btn=document.getElementById('bTheme');
 
+function themeLabel(t){var en=html.lang==='en';return t===DARK?(en?'Light theme':'Светлая тема'):(en?'Dark theme':'Тёмная тема')}
 function applyTheme(t){
   html.setAttribute('data-theme',t);
   btn.textContent=t===DARK?'☀️':'🌙';
+  btn.setAttribute('aria-label',themeLabel(t));
   try{localStorage.setItem('cv-theme',t)}catch(e){}
 }
 
@@ -998,8 +1018,9 @@ function toggleTheme(){
   render();
   // Lottie shape (falls back to the static SVG if the library is unavailable)
   var LOT={"v":"5.7.0","fr":60,"ip":0,"op":240,"w":400,"h":400,"nm":"stone","ddd":0,"assets":[],"layers":[{"ddd":0,"ind":1,"ty":4,"nm":"s1","sr":1,"ks":{"o":{"a":0,"k":100},"r":{"a":1,"k":[{"t":0,"s":[0],"i":{"x":[0.45],"y":[1]},"o":{"x":[0.55],"y":[0]}},{"t":240,"s":[-360]}]},"p":{"a":0,"k":[200,200,0]},"a":{"a":0,"k":[0,0,0]},"s":{"a":1,"k":[{"t":0,"s":[62,62,100],"i":{"x":[0.45,0.45,0.45],"y":[1,1,1]},"o":{"x":[0.55,0.55,0.55],"y":[0,0,0]}},{"t":120,"s":[50.839999999999996,50.839999999999996,100],"i":{"x":[0.45,0.45,0.45],"y":[1,1,1]},"o":{"x":[0.55,0.55,0.55],"y":[0,0,0]}},{"t":240,"s":[62,62,100]}]}},"ao":0,"ip":0,"op":240,"st":0,"bm":0,"shapes":[{"ty":"gr","it":[{"ty":"sr","sy":1,"d":1,"pt":{"a":0,"k":10},"p":{"a":0,"k":[0,0]},"r":{"a":0,"k":0},"or":{"a":0,"k":170},"os":{"a":0,"k":0},"ir":{"a":1,"k":[{"t":0,"s":[130],"i":{"x":[0.45],"y":[1]},"o":{"x":[0.55],"y":[0]}},{"t":120,"s":[70],"i":{"x":[0.45],"y":[1]},"o":{"x":[0.55],"y":[0]}},{"t":240,"s":[130]}]},"is":{"a":0,"k":0}},{"ty":"fl","c":{"a":0,"k":[0.29,0.25,0.9,1]},"o":{"a":0,"k":100},"r":1},{"ty":"tr","p":{"a":0,"k":[0,0]},"a":{"a":0,"k":[0,0]},"s":{"a":0,"k":[100,100]},"r":{"a":0,"k":0},"o":{"a":0,"k":100}}]}]},{"ddd":0,"ind":2,"ty":4,"nm":"s2","sr":1,"ks":{"o":{"a":0,"k":100},"r":{"a":1,"k":[{"t":0,"s":[0],"i":{"x":[0.45],"y":[1]},"o":{"x":[0.55],"y":[0]}},{"t":240,"s":[360]}]},"p":{"a":0,"k":[200,200,0]},"a":{"a":0,"k":[0,0,0]},"s":{"a":1,"k":[{"t":0,"s":[100,100,100],"i":{"x":[0.45,0.45,0.45],"y":[1,1,1]},"o":{"x":[0.55,0.55,0.55],"y":[0,0,0]}},{"t":120,"s":[82.0,82.0,100],"i":{"x":[0.45,0.45,0.45],"y":[1,1,1]},"o":{"x":[0.55,0.55,0.55],"y":[0,0,0]}},{"t":240,"s":[100,100,100]}]}},"ao":0,"ip":0,"op":240,"st":0,"bm":0,"shapes":[{"ty":"gr","it":[{"ty":"sr","sy":1,"d":1,"pt":{"a":0,"k":10},"p":{"a":0,"k":[0,0]},"r":{"a":0,"k":0},"or":{"a":0,"k":170},"os":{"a":0,"k":0},"ir":{"a":1,"k":[{"t":0,"s":[70],"i":{"x":[0.45],"y":[1]},"o":{"x":[0.55],"y":[0]}},{"t":120,"s":[130],"i":{"x":[0.45],"y":[1]},"o":{"x":[0.55],"y":[0]}},{"t":240,"s":[70]}]},"is":{"a":0,"k":0}},{"ty":"fl","c":{"a":0,"k":[0.07,0.07,0.07,1]},"o":{"a":0,"k":100},"r":1},{"ty":"tr","p":{"a":0,"k":[0,0]},"a":{"a":0,"k":[0,0]},"s":{"a":0,"k":[100,100]},"r":{"a":0,"k":0},"o":{"a":0,"k":100}}]}]}]};
+  var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js';
-  s.onload=function(){try{var box=document.getElementById('lot');box.innerHTML='';lottie.loadAnimation({container:box,renderer:'svg',loop:true,autoplay:true,animationData:LOT})}catch(e){}};
+  s.onload=function(){try{var box=document.getElementById('lot');box.innerHTML='';lottie.loadAnimation({container:box,renderer:'svg',loop:!RM,autoplay:!RM,animationData:LOT})}catch(e){}};
   document.head.appendChild(s);
 })();
 
@@ -1011,6 +1032,11 @@ function setLang(l){
     document.documentElement.lang=l;
     document.getElementById('bRu').classList.toggle('active',l==='ru');
     document.getElementById('bEn').classList.toggle('active',l==='en');
+    document.getElementById('bRu').setAttribute('aria-pressed',l==='ru');
+    document.getElementById('bEn').setAttribute('aria-pressed',l==='en');
+    document.getElementById('bTheme').setAttribute('aria-label',themeLabel(html.getAttribute('data-theme')));
+    document.getElementById('bPdf').setAttribute('aria-label',l==='ru'?'Сохранить как PDF':'Save as PDF');
+    document.querySelector('.controls').setAttribute('aria-label',l==='ru'?'Настройки':'Settings');
     document.getElementById('nameEl').innerHTML=
       l==='ru'?'Кирилл<br><em>Куцобин</em>':'Kirill<br><em>Kutsobin</em>';
     document.title=l==='ru'?'Кирилл Куцобин':'Kirill Kutsobin';
