@@ -781,7 +781,7 @@ body:not(.menu-on) .controls,body:not(.menu-on) .intro-bar{opacity:0;pointer-eve
           </div>
 
           <div class="exp-row">
-            <div><div class="exp-date" data-ru="Ноябрь 2021 — н.в." data-en="Nov 2021 — Present">Ноябрь 2021 — н.в.</div><div class="exp-dur" data-ru="4 г. 7 мес." data-en="4 yr 7 mo">4 г. 7 мес.</div></div>
+            <div><div class="exp-date" data-ru="Ноябрь 2021 — н.в." data-en="Nov 2021 — Present">Ноябрь 2021 — н.в.</div><div class="exp-dur" data-since="2021-11" data-ru="4 г. 7 мес." data-en="4 yr 7 mo">4 г. 7 мес.</div></div>
             <div>
               <div class="exp-co">GrowFood</div>
               <div class="exp-role" data-ru="Web-мастер" data-en="Web Master">Web-мастер</div>
@@ -1001,6 +1001,21 @@ function toggleTheme(){
   var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js';
   s.onload=function(){try{var box=document.getElementById('lot');box.innerHTML='';lottie.loadAnimation({container:box,renderer:'svg',loop:true,autoplay:true,animationData:LOT})}catch(e){}};
   document.head.appendChild(s);
+})();
+
+// ── DURATION OF CURRENT JOB (считается от текущей даты) ──
+(function(){
+  var now=new Date();
+  document.querySelectorAll('.exp-dur[data-since]').forEach(function(el){
+    var p=el.getAttribute('data-since').split('-');
+    var m=(now.getFullYear()-+p[0])*12+(now.getMonth()+1-+p[1]);
+    if(m<0)return;
+    var y=Math.floor(m/12),mo=m%12;
+    var ru=y+' г.'+(mo?' '+mo+' мес.':'');
+    var en=y+' yr'+(mo?' '+mo+' mo':'');
+    el.setAttribute('data-ru',ru);el.setAttribute('data-en',en);
+    el.textContent=(document.documentElement.lang==='en')?en:ru;
+  });
 })();
 
 // ── LANGUAGE ──────────────────────────────────────
