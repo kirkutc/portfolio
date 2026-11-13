@@ -697,6 +697,20 @@ h2,h3,.sec-title,.pf-label{font-family:var(--sans)}
 .controls,.intro-bar{transition:opacity .35s ease,transform .35s ease}
 body:not(.menu-on) .controls,body:not(.menu-on) .intro-bar{opacity:0;pointer-events:none;transform:translateY(-8px)}
 @media print{body:not(.menu-on) .controls{display:none}}
+/* мобильная панель: единая плашка с подложкой, чтобы не мешал текст под ней */
+@media(max-width:700px){
+  .controls{
+    top:max(.6rem,env(safe-area-inset-top));right:.6rem;gap:.25rem;
+    padding:.25rem;border-radius:999px;
+    background:color-mix(in srgb,var(--bg) 82%,transparent);
+    -webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);
+    border:1px solid var(--faint);box-shadow:0 2px 14px rgba(0,0,0,.08);
+  }
+  .controls .btn{padding:.38rem .7rem;font-size:.56rem;letter-spacing:.1em;background:transparent;border-color:transparent}
+  .controls .btn.active{background:var(--pill);color:var(--pill-t)}
+  .controls .btn-theme{font-size:.8rem;padding:.26rem .6rem}
+  .controls .btn-pdf{border-color:var(--faint)}
+}
 </style>
 </head>
 <body>
