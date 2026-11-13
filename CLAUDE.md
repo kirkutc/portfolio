@@ -24,4 +24,5 @@
 cbtcamp.ru, promo.onlinetours.ru/maldives_telegram, /promokod, /zoomer-tour, concierge.onlinetours.ru (+ /direction/antarctica), adventura.onlinetours.ru, amb.growfood.pro (/ и /invite), quality.growfood.pro, gf-gift.ru, tmstone.ru.
 
 ## Опыт и стек
-Atlas (локализация JSON-квизов и лендингов) добавлен в опыт отдельной строкой «Проект» и в стек группой «Локализация».
+Atlas — строка «Проект» вверху опыта. Роль: «Верстальщик лендингов и технический специалист в арбитраже трафика» / «Landing Page Developer / Tech Specialist (Affiliate Marketing)». Задачи описаны через результат (лендинги и ускорение тестов, сквозной трекинг в Keitaro, таблица спая), плюс локализация JSON-квизов.
+В стеке для Atlas добавлены группы «Трекинг», «Интеграции», «Инфраструктура», а «Верстка» и «Аналитика» дополнены (Zero Block, JS-анимации, spy-сервисы и т.д.); группа «Локализация» сохранена.
